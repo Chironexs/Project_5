@@ -1,0 +1,27 @@
+﻿@model PlanFood.Mvc.Models.ViewModel.ContactViewModel
+@{
+    ViewData["Title"] = "Contact";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Html.Partial("_LayoutLogOutHeader")
+
+    <section class="dashboard-section">
+        <div class="container pt-4 pb-4">
+            <div class="border-dashed view-height">
+                <div class="container w-25 padding-small text-left">                    
+                    <address>
+                        <h1 class="text-color-darker">Kontakt</h1>
+                        <p>@Model.CompanyName</p>
+                        @Model.CompanyAddress<br />
+                        @Model.PostalCodeAndCity <br />
+                        @Model.CompanyPhoneNumber <br />                        
+                    </address>                          
+                    <address>
+                        <a href="mailto:#">@Model.CompanyEmailAddress</a>
+                    </address>                    
+                </div>                               
+            </div>
+        </div>
+    </section>
+

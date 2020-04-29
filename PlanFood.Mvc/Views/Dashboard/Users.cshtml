@@ -1,0 +1,71 @@
+﻿@model ICollection<PlanFood.Mvc.Models.Db.User>
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<IdentityUser> _userManager
+@{UserManager<IdentityUser> userManager = _userManager;}
+
+@{
+    ViewData["Title"] = "Users";
+}
+
+@Html.Partial("_LayoutLogInHeader")
+
+<section class="dashboard-section">
+    <div class="row dashboard-nowrap">
+
+        @Html.Partial("_LayoutFlexColumnMenu")
+
+        <div class="m-4 p-3 width-medium">
+            <div class="m-4 p-3 border-dashed view-height">
+
+                <div class="row border-bottom border-3 p-1 m-1">
+                    <div class="col noPadding">
+                        <h3 class="color-header text-uppercase">LISTA UŻYTKOWNIKÓW</h3>
+                    </div>
+                    <div class="col d-flex justify-content-end mb-2 noPadding">
+                        <a asp-controller="Dashboard" asp-action="Index" class="btn btn-success rounded-0 pt-0 pb-0 pr-4 pl-4">Powrót</a>
+                    </div>
+                </div>
+
+                <div class="schedules-content">
+                    <table class="table">
+                        <thead>
+                            <tr class="d-flex">
+                                <th class="col-1">ID</th>
+                                <th class="col-3">IMIĘ</th>
+                                <th class="col-6">NAZWISKO</th>
+                                <th class="col-2 center">AKCJE</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-color-lighter">
+                            @{
+                                int count = 1;
+                            }
+                            @foreach (var user in Model)
+                            {
+                                <tr class="d-flex">
+                                    <td class="col-1">@count</td>
+                                    <td class="col-3">@user.FirstName</td>
+                                    <td class="col-6">@user.LastName</td>
+                                    <td class="col-2 center">
+                                        @if (userManager.IsInRoleAsync(user, "ActiveUser").Result)
+                                        {
+                                            <a asp-controller="Dashboard" asp-action="Block" asp-route-id="@user.Id" class="btn btn-danger rounded-0 text-light m-1">Blokuj</a>
+                                        }
+                                        else
+                                        {
+                                            <a asp-controller="Dashboard" asp-action="Unlock" asp-route-id="@user.Id" class="btn btn-success rounded-0 text-light m-1">Odblokuj</a>
+                                        }
+                                    </td>
+                                </tr>
+
+                                {
+                                    count++;
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

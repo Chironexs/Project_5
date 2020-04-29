@@ -1,0 +1,24 @@
+﻿@model PlanFood.Mvc.Models.Db.RecipePlan
+
+@{
+    ViewData["Title"] = "RemoveRecipe";
+}
+
+@Html.Partial("_LayoutLogInHeader")
+
+<section class="dashboard-section">
+    <div class="row dashboard-nowrap">
+
+        @Html.Partial("_LayoutFlexColumnMenu")
+
+        <div class="m-4 p-3 width-medium">
+            <div class="dashboard-content border-dashed p-3 m-4 view-height">
+                <form asp-controller="Plan" asp-action="ConfirmRemoveRecipe" asp-route-id="@Model.Id" method="post" class="padding-small text-center">
+                    <h1 class="text-color-darker">Czy napewno chcesz usunac Przepis: @Model.Recipe.Name z Planu: @Model.Plan.Name?</h1>
+                    <button class="btn btn-color rounded-0" type="submit">Ok</button>
+                    <button asp-controller="Plan" asp-action="Details" asp-route-id="@Model.PlanId" formmethod="get" class="btn btn-color rounded-0">Anuluj</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

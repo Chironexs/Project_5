@@ -1,0 +1,42 @@
+﻿@model PlanFood.Mvc.Models.ViewModel.RegisterViewModel
+@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Html.Partial("_ValidationScriptsPartial");
+}
+
+@Html.Partial("_LayoutLogOutHeader")
+
+<section class="dashboard-section">
+    <div class="container pt-4 pb-4">
+        <div class="border-dashed view-height">
+            <div class="container w-25">
+                <form asp-controller="Account" asp-action="Register" method="post" class="padding-small text-center">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <h1 class="text-color-darker">Rejestracja</h1>
+                    <div class="form-group">
+                        <input asp-for="FirstName" type="text" class="form-control" id="firstname" name="firstname" placeholder="podaj imię">
+                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input asp-for="LastName" type="text" class="form-control" id="lastname" name="lastname" placeholder="podaj nazwisko">
+                        <span asp-validation-for="LastName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input asp-for="Email" type="email" class="form-control" id="email" name="email" placeholder="podaj email">
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input asp-for="Password" type="password" class="form-control" id="password" name="password" placeholder="podaj hasło">
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input asp-for="RepeatPassword" type="password" class="form-control" id="repeatpassword" name="repeatpassword" placeholder="powtórz hasło">
+                        <span asp-validation-for="RepeatPassword" class="text-danger"></span>
+                    </div>
+                    <button class="btn btn-color rounded-0" type="submit">Zarejestruj</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,57 @@
+﻿@model PlanFood.Mvc.Models.ViewModel.UserDataViewModel
+
+@{
+    ViewData["Title"] = "UserData";
+}
+
+@Html.Partial("_LayoutLogInHeader")
+
+<section class="dashboard-section">
+    <div class="row dashboard-nowrap">
+
+        @Html.Partial("_LayoutFlexColumnMenu")
+
+        <div class="m-4 p-3 width-medium text-color-darker">
+            <div class="m-4 border-dashed view-height">
+                <form asp-controller="Dashboard" asp-action="UserData" method="post">
+                    <div class="mt-4 ml-4 mr-4">
+                        <div class="row border-bottom border-3">
+                            <div class="col"><h3 class="color-header text-uppercase">Edytuj dane</h3></div>
+                            <div class="col d-flex justify-content-end mb-2">
+                                <button type="submit" class="btn btn-color rounded-0 pt-0 pb-0 pr-4 pl-4">
+                                    Zapisz
+                                </button>
+                            </div>
+                        </div>
+
+                        <table class="table borderless">
+                            <tbody>
+                                <tr class="d-flex">
+                                    <th scope="row" class="col-2"><h4>Imię</h4></th>
+                                    <td class="col-7">
+                                        <input asp-for="FirstName" class="w-100 p-1" value="@Model.FirstName">
+                                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                                    </td>
+                                </tr>
+                                <tr class="d-flex">
+                                    <th scope="row" class="col-2"><h4>Nazwisko</h4></th>
+                                    <td class="col-7">
+                                        <input asp-for="LastName" class="w-100 p-1" value="@Model.LastName">
+                                        <span asp-validation-for="LastName" class="text-danger"></span>
+                                    </td>
+                                </tr>
+                                <tr class="d-flex">
+                                    <th scope="row" class="col-2"><h4>Email</h4></th>
+                                    <td class="col-3">
+                                        <input asp-for="Email" class="p-1 w-100" type="text" value="@Model.Email">
+                                        <span asp-validation-for="Email" class="text-danger"></span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

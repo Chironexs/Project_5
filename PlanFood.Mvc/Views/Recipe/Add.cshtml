@@ -1,0 +1,78 @@
+﻿@model PlanFood.Mvc.Models.ViewModel.RecipeViewModel
+
+@{
+    ViewData["Title"] = "Add";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Html.Partial("_LayoutLogInHeader")
+
+<section class="dashboard-section">
+    <div class="row dashboard-nowrap">
+
+        @Html.Partial("_LayoutFlexColumnMenu")
+
+        <div class="m-4 p-3 width-medium text-color-darker">
+            <div class="dashboard-content border-dashed p-3 m-4 view-height">
+                <form asp-controller="Recipe" asp-action="Add" method="post">
+                    <div class="mt-4 ml-4 mr-4">
+                        <div class="row border-bottom border-3">
+                            <div class="col"><h3 class="color-header text-uppercase">Nowy przepis</h3></div>
+                            <div class="col d-flex justify-content-end mb-2">
+                                <button type="submit" class="btn btn-color rounded-0 pt-0 pb-0 pr-4 pl-4">Zapisz</button>
+                            </div>
+                        </div>
+
+                        <table class="table borderless">
+                            <tbody>
+                                <tr class="d-flex">
+                                    <th scope="row" class="col-2">Nazwa Przepisu</th>
+                                    <td class="col-7">
+
+                                        <input asp-for="Name" name="name" class="w-100 p-1" value="">
+                                        <span asp-validation-for="Name" class="text-danger"></span>
+                                    </td>
+                                </tr>
+                                <tr class="d-flex">
+                                    <th scope="row" class="col-2">Opis przepisu</th>
+                                    <td class="col-7"><textarea asp-for="Description" class="w-100 p-1" rows="5"></textarea></td>
+                                    <td asp-validation-for="Description" class="text-danger"></td>
+                                </tr>
+                                <tr class="d-flex">
+                                    <th scope="row" class="col-2">Przygotowanie (minuty)</th>
+                                    <td class="col-3">
+                                        <input asp-for="PreparationTime" class="p-1" type="number" value="">
+                                    <td asp-validation-for="PreparationTime" class="text-danger">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="row d-flex">
+                            <div class="col-5 border-bottom border-3">
+                                <h3 class="text-uppercase">
+                                    Sposób
+                                    przygotowania
+                                </h3>
+                            </div>
+                            <div class="col-2"></div>
+                            <div class="col-5 border-bottom border-3"><h3 class="text-uppercase">Składniki</h3></div>
+                        </div>
+                        <div class="row d-flex">
+                            <div class="col-5 p-4">
+                                <textarea asp-for="Preparation" class="w-100 p-1" rows="10"></textarea>
+                                <span asp-validation-for="Preparation" class="text-danger"></span>
+                            </div>
+                            <div class="col-2"></div>
+
+                            <div class="col-5 p-4">
+                                <textarea asp-for="Ingredients" class="w-100 p-1" rows="10"></textarea>
+                                <span asp-validation-for="Ingredients" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

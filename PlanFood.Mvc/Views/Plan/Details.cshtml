@@ -1,0 +1,82 @@
+﻿@model PlanFood.Mvc.Models.ViewModel.PlanDetailsViewModel
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Html.Partial("_LayoutLogInHeader")
+
+<section class="dashboard-section">
+    <div class="row dashboard-nowrap">
+
+        @Html.Partial("_LayoutFlexColumnMenu")
+
+        <div class="m-4 p-3 width-medium ">
+            <div class="dashboard-content border-dashed p-3 m-4">
+                <div class="row border-bottom border-3 p-1 m-1">
+                    <div class="col noPadding">
+                        <h3 class="color-header text-uppercase">SZCZEGÓŁY PLANU</h3>
+                    </div>
+                    <div class="col d-flex justify-content-end mb-2 noPadding">
+                        <a asp-controller="Plan" asp-action="List" class="btn btn-success rounded-0 pt-0 pb-0 pr-4 pl-4">Powrót</a>
+                    </div>
+                </div>
+
+                <div class="schedules-content">
+                    <div class="schedules-content-header">
+                        <div class="form-group row">
+                            <span class="col-sm-2 label-size col-form-label">
+                                Nazwa planu
+                            </span>
+                            <div class="col-sm-10">
+                                <p class="schedules-text">@Model.Plan.Name</p>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <span class="col-sm-2 label-size col-form-label">
+                                Opis planu
+                            </span>
+                            <div class="col-sm-10">
+                                <p class="schedules-text">
+                                    @Model.Plan.Description
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    @foreach (var dayName in Model.DayNames)
+                    {
+                        <table class="table">
+                            <thead>
+                                <tr class="d-flex">
+                                    <th class="col-2">@dayName.Name</th>
+                                    <th class="col-7"></th>
+                                    <th class="col-1"></th>
+                                    <th class="col-2"></th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-color-lighter">
+                                @foreach (var recipePlan in Model.RecipePlans)
+                                {
+                                    if (recipePlan.DayNameId == dayName.Id)
+                                    {
+                                        <tr class="d-flex">
+                                            <td class="col-2">@recipePlan.MealName</td>
+                                            <td class="col-7">@recipePlan.Recipe.Name</td>
+                                            <td class="col-1 center">
+                                                <a asp-controller="Plan" asp-action="RemoveRecipe" asp-route-id="@recipePlan.Id" class="btn btn-danger rounded-0 text-light m-1">Usuń</a>
+                                            </td>
+                                            <td class="col-2 center">
+                                                <a asp-controller="Recipe" asp-action="Details" asp-route-id="@recipePlan.RecipeId" class="btn btn-info rounded-0 text-light m-1">Szczegóły</a>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
